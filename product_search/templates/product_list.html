@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Product List{% endblock %}
+
+{% block content %}
+    <h2 style="text-align: center; margin-bottom: 10px; color: #333;">Product List</h2>
+
+    <!-- eBay Products -->
+    <h3 style="text-align: center; color: #555;">eBay Products</h3>
+    <div style="overflow-x: auto; margin-bottom: 20px;">
+        <div style="max-height: 600px; overflow-y: scroll; scrollbar-width: thin; scrollbar-color: #888 #f1f1f1;">
+            <table id="ebayProductTable" style="width: 100%; border-collapse: collapse; min-width: 1200px; border: 1px solid black;">
+                <thead style="position: sticky; top: 0; background-color: #d0d328; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 2;">
+                    <tr style="color: #333; text-align: left;">
+                        <th class="fixed-col" style="padding: 12px; border: 1px solid black;">Product Name</th>
+                        <th style="padding: 12px; border: 1px solid black;">Avg Sold Price</th>
+                        <th style="padding: 12px; border: 1px solid black;">Avg Shipping Cost</th>
+                        <th style="padding: 12px; border: 1px solid black;">Total Sold Count</th>
+                        <th style="padding: 12px; border: 1px solid black;">Total Sales Value</th>
+                        <th style="padding: 12px; border: 1px solid black;">Date Last Sold</th>
+                        <th style="padding: 12px; border: 1px solid black;">Condition</th>
+                        <th style="padding: 12px; border: 1px solid black;">Review</th>
+                        <th style="padding: 12px; border: 1px solid black;">Type</th>
+                        <th style="padding: 12px; border: 1px solid black;">Seller</th>
+                        <th style="padding: 12px; border: 1px solid black;">Brand</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ebay_product in ebay_products %}
+                        <tr style="border-bottom: 1px solid black; text-align: left;">
+                            <td class="fixed-col" style="padding: 10px;">{{ ebay_product.product_name }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.avg_sold_price }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.avg_shipping_cost }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.total_sold_count }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.total_sales_value }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.date_last_sold }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.condition }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.review }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.product_type }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.seller }}</td>
+                            <td style="padding: 10px;">{{ ebay_product.brand }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 20px; color: #ff6666;">No eBay products found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Jungle Scout Products -->
+    <h3 style="text-align: center; color: #555;">Jungle Scout Products</h3>
+    <div style="overflow-x: auto; margin-bottom: 20px;">
+        <div style="max-height: 600px; overflow-y: scroll; scrollbar-width: thin; scrollbar-color: #888 #f1f1f1;">
+            <table id="jungleScoutProductTable" style="width: 100%; border-collapse: collapse; min-width: 1200px; border: 1px solid black;">
+                <thead style="position: sticky; top: 0; background-color: #d0d328; box-shadow: 0 4px 8px rgba(0,0,0,0.1); z-index: 2;">
+                    <tr style="color: #333; text-align: left;">
+                        <th class="fixed-col" style="padding: 12px; border: 1px solid black;">ASIN</th>
+                        <th class="fixed-col" style="padding: 12px; border: 1px solid black;">Product Name</th>
+                        <th style="padding: 12px; border: 1px solid black;">Brand</th>
+                        <th style="padding: 12px; border: 1px solid black;">Category</th>
+                        <th style="padding: 12px; border: 1px solid black;">Est. Monthly Revenue</th>
+                        <th style="padding: 12px; border: 1px solid black;">Est. Monthly Sales</th>
+                        <th style="padding: 12px; border: 1px solid black;">Price</th>
+                        <th style="padding: 12px; border: 1px solid black;">Fees</th>
+                        <th style="padding: 12px; border: 1px solid black;">Net</th>
+                        <th style="padding: 12px; border: 1px solid black;">Rank</th>
+                        <th style="padding: 12px; border: 1px solid black;">Reviews</th>
+                        <th style="padding: 12px; border: 1px solid black;">LQS</th>
+                        <th style="padding: 12px; border: 1px solid black;">Sellers</th>
+                        <th style="padding: 12px; border: 1px solid black;">Date First Available</th>
+                        <th style="padding: 12px; border: 1px solid black;">Buy Box Owner</th>
+                        <th style="padding: 12px; border: 1px solid black;">Rating</th>
+                        <th style="padding: 12px; border: 1px solid black;">Dimensions</th>
+                        <th style="padding: 12px; border: 1px solid black;">Product Tier</th>
+                        <th style="padding: 12px; border: 1px solid black;">Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in jungle_scout_products %}
+                        <tr style="border-bottom: 1px solid black; text-align: left;">
+                            <td class="fixed-col" style="padding: 10px;">{{ product.ASIN }}</td>
+                            <td class="fixed-col" style="padding: 10px;">{{ product.product_name }}</td>
+                            <td style="padding: 10px;">{{ product.brand }}</td>
+                            <td style="padding: 10px;">{{ product.category }}</td>
+                            <td style="padding: 10px;">{{ product.est_monthly_revenue }}</td>
+                            <td style="padding: 10px;">{{ product.est_monthly_sales }}</td>
+                            <td style="padding: 10px;">{{ product.price }}</td>
+                            <td style="padding: 10px;">{{ product.fees }}</td>
+                            <td style="padding: 10px;">{{ product.net }}</td>
+                            <td style="padding: 10px;">{{ product.rank }}</td>
+                            <td style="padding: 10px;">{{ product.reviews }}</td>
+                            <td style="padding: 10px;">{{ product.LQS }}</td>
+                            <td style="padding: 10px;">{{ product.sellers }}</td>
+                            <td style="padding: 10px;">{{ product.date_first_available }}</td>
+                            <td style="padding: 10px;">{{ product.buy_box_owner }}</td>
+                            <td style="padding: 10px;">{{ product.rating }}</td>
+                            <td style="padding: 10px;">{{ product.dimensions }}</td>
+                            <td style="padding: 10px;">{{ product.product_tier }}</td>
+                            <td style="padding: 10px;">{{ product.weight }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="19" style="text-align: center; padding: 20px; color: #ff6666;">No Jungle Scout products found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'search_keywords' %}" style="color: #333; text-decoration: none; font-weight: bold;">Back to Search</a>
+        <button onclick="downloadCSV('ebayProductTable')" style="margin-left: 10px;">Download eBay CSV</button>
+        <button onclick="downloadCSV('jungleScoutProductTable')" style="margin-left: 10px;">Download Jungle Scout CSV</button>
+        <button onclick="downloadExcel('ebayProductTable')" style="margin-left: 10px;">Download eBay Excel</button>
+        <button onclick="downloadExcel('jungleScoutProductTable')" style="margin-left: 10px;">Download Jungle Scout Excel</button>
+    </div>
+
+    <!-- Scrollbar styles -->
+    <style>
+        /* Webkit browsers */
+        div::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        div::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 10px;
+        }
+
+        div::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+
+        /* Firefox */
+        div {
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+        }
+
+        /* Sticky column */
+        .fixed-col {
+            position: -webkit-sticky;
+            position: sticky;
+            left: 0;
+            background-color: #f9f9f9;
+            z-index: 1;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
+
+    <!-- JavaScript for CSV and Excel download -->
+    <script>
+        function downloadCSV(tableId) {
+            let csv = [];
+            let rows = document.querySelectorAll(`#${tableId} tr`);
+            
+            for (let row of rows) {
+                let cols = row.querySelectorAll('td, th');
+                let csvRow = [];
+                for (let col of cols) {
+                    csvRow.push('"' + col.innerText.replace(/"/g, '""') + '"');
+                }
+                csv.push(csvRow.join(','));
+            }
+            
+            let csvString = csv.join('\n');
+            let blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+            let url = URL.createObjectURL(blob);
+            let link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', tableId + '.csv');
+            link.click();
+        }
+
+        function downloadExcel(tableId) {
+            let wb = XLSX.utils.book_new();
+            let ws = XLSX.utils.table_to_sheet(document.getElementById(tableId));
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, tableId + '.xlsx');
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+{% endblock %}

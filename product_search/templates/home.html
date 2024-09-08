@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Product Research Tool{% endblock %}</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        header {
+            width: 100%;
+            background-color: #333;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff8080;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        main h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .feature-box {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            width: 280px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .cta-button {
+            background-color: #ff8080;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #ff5050;
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .feature-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Product Research Tool</h1>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+
+            <a href="{% url 'search_keywords' %}">Search Keywords</a>
+            <!-- Add other links as needed -->
+        </nav>
+    </header>
+
+    <main>
+        <h2>Do Product Research with Ease</h2>
+        <p>Our tool provides comprehensive data from both Jungle Scout and eBay, all in one place. Research products, analyze trends, and download your findings in CSV or Excel formats effortlessly.</p>
+
+        <div class="feature-box">
+            <div class="feature">
+                <h3>Jungle Scout Integration</h3>
+                <p>Get the latest data from Jungle Scout to make informed decisions on your next product to sell.</p>
+            </div>
+            <div class="feature">
+                <h3>eBay Product Insights</h3>
+                <p>Analyze product data from eBay, including pricing, sales volume, and more, to stay competitive.</p>
+            </div>
+            <div class="feature">
+                <h3>Download as CSV or Excel</h3>
+                <p>Easily export your product research in CSV or Excel formats to use in your favorite tools and workflows.</p>
+            </div>
+        </div>
+
+        <a href="{% url 'search_keywords' %}" class="cta-button">Start Researching Now</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Product Research Tool. All rights reserved.</p>
+    </footer>
+</body>
+</html>
