@@ -7,6 +7,19 @@ class Keyword(models.Model):
     def __str__(self):
         return self.keyword
     
+class AmazonProduct(models.Model):
+    asin = models.CharField(max_length=20, primary_key=True)
+    title = models.CharField(max_length=255)
+    price = models.CharField(max_length=20, null=True, blank=True)
+    rating = models.CharField(max_length=50, null=True, blank=True)
+    sales = models.CharField(max_length=50, null=True, blank=True)
+    brand_name = models.CharField(max_length=100, null=True, blank=True)
+    class Meta:
+        db_table = 'amazon_product'  # Specify the correct table name
+
+    def __str__(self):
+        return self.title
+    
 class JungleScoutProduct(models.Model):
     ASIN = models.CharField(max_length=20, primary_key=True)
     product_name = models.CharField(max_length=255)
