@@ -3,14 +3,13 @@ from django.shortcuts import render, redirect
 from .models import Keyword, JungleScoutProduct, EbayProduct, AmazonProduct
 from django.contrib import messages
 import re
-
-
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Keyword, JungleScoutProduct, EbayProduct, AmazonProduct
 import re
 
+@login_required
 def search_keywords(request):
     if request.method == 'POST':
         keyword = request.POST.get('keyword')
@@ -206,5 +205,6 @@ def search_keywords(request):
 #     products = EbayProduct.objects.all()  # Fetch all products from the table
 #     return render(request, 'test.html', {'products': products})
 
+@login_required
 def home(request):
     return render(request, 'home.html')

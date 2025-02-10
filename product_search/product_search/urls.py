@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from search import views  # Import the home view from the search app
+from auth_app.views import login_views, logout_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('search/', include('search.urls')),  # Redirects to the search app
     path('', views.home, name='home'),  # Add this line to set the home page at the main URL
+    path('login/', login_views, name='login'),
+    path('logout/', logout_views, name='logout'),
 ]
